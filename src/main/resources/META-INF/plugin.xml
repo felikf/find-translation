@@ -1,0 +1,28 @@
+<idea-plugin>
+    <id>cz.findtranslation</id>
+    <name>Find Translation</name>
+    <vendor email="support@example.com">Find Translation</vendor>
+
+    <description><![CDATA[
+        Identifies i18n keys in React/Angular files and allows Ctrl/Cmd-click navigation to JSON/YAML translation declarations.
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.json</depends>
+    <depends>JavaScript</depends>
+    <depends>org.jetbrains.plugins.yaml</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <psi.referenceContributor language="ANY" implementation="cz.findtranslation.TranslationReferenceContributor"/>
+        <projectConfigurable id="findtranslation.settings" displayName="Find Translation" instance="cz.findtranslation.TranslationConfigurable"/>
+    </extensions>
+
+    <actions>
+        <action id="findtranslation.findKey"
+                class="cz.findtranslation.FindTranslationKeyAction"
+                text="Find Translation Key"
+                description="Find translation key in JSON/YAML translation files">
+            <add-to-group group-id="FindMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
